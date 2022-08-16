@@ -1,25 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-
+import React, { useState } from 'react';
+import ReactQuill,{Quill} from 'react-quill';
+import QuillImageDropAndPaste from 'quill-image-drop-and-paste'
+import { ImageResize } from 'quill-image-resize-module';
+import 'react-quill/dist/quill.snow.css';
+Quill.register('modules/imageDropAndPaste', QuillImageDropAndPaste)
+Quill.register('modules/imageResize',ImageResize)
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ 
+  const [value, setValue] = useState('');
+
+  return <ReactQuill theme="snow" value={value} onChange={setValue} modules={{imageDropAndPaste: true,ImageResize: true}} />;
 }
 
 export default App;
